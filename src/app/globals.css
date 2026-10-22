@@ -1,0 +1,1160 @@
+/* ==========================================================================
+   Ditre Italia 
+
+   Structure
+   01. Root
+   02. Reset & base
+   03. Layout helpers
+   04. Typography blocks   (.statement, .small, .accent, .mark, .split)
+   05. UI blocks           (.roll, .nav-list, .contact-info, .logo, .icon-btn,
+                            .circle-btn, .magnetic, .media, .marquee, .cursor)
+   06. Section blocks      (.header, .hero, .mission, .innovation, .values,
+                            .language, .banner, .team, .contact, .footer)
+   07. Responsive
+   ========================================================================== */
+
+/* 01. Root ------------------------------------------------------------- */
+:root {
+  --bg: #fdfaf3;
+  --ink: #1c1a17;
+  --muted: #5f5a52;
+  --line: rgba(28, 26, 23, 0.55);
+  --fill: #efe7d8;
+  --media-bg: #e9e2d4;
+
+  --pad: clamp(16px, 2.45vw, 48px);
+  --section-gap: clamp(72px, 10vw, 170px);
+
+  --font-sans: "Inter Tight Variable", "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Instrument Serif", "Times New Roman", serif;
+  --font-display: "Syne Variable", "Syne", "Arial Black", sans-serif;
+
+  --fs-statement: clamp(24px, 2.65vw, 46px);
+  --fs-body: clamp(13px, 0.95vw, 16px);
+  --fs-small: clamp(11px, 0.86vw, 14px);
+  --fs-mega: clamp(52px, 8.1vw, 140px);
+
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 02. Reset & base -------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 300;
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+address {
+  margin: 0;
+  font-weight: inherit;
+  font-style: normal;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
+}
+
+/* 03. Layout helpers ------------------------------------------------------ */
+.page {
+  overflow-x: clip;
+}
+
+.header,
+.hero__top,
+.hero__labels,
+.mission,
+.values,
+.language,
+.team,
+.contact {
+  display: grid;
+  grid-template-columns: repeat(24, minmax(0, 1fr));
+}
+
+/* 04. Typography blocks --------------------------------------------------- */
+.statement {
+  font-size: var(--fs-statement);
+  font-weight: 300;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+}
+
+.statement--indent-none {
+  text-indent: 0;
+}
+.statement--indent-sm {
+  text-indent: 12%;
+}
+.statement--indent-md {
+  text-indent: 22%;
+}
+.statement--indent-lg {
+  text-indent: 30%;
+}
+
+.statement--light {
+  color: #fff;
+}
+
+.small {
+  font-size: var(--fs-small);
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+/* Italic serif letter used inside sans-serif headlines. */
+.accent {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Small italic serif "O" that acts as an index mark. */
+.mark {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(22px, 2.4vw, 40px);
+  line-height: 1;
+}
+
+/* Word wrappers produced by <SplitText/> — masks for the slide-up reveal. */
+.split__word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.split__inner {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* 05. UI blocks ----------------------------------------------------------- */
+
+.roll {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.roll__text {
+  display: block;
+  transition: transform 0.55s var(--ease-in-out);
+}
+
+.roll__text--clone {
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.roll:hover .roll__text,
+.roll:focus-visible .roll__text {
+  transform: translateY(-100%);
+}
+
+/* Nav list */
+.nav-list--column {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-list--row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em clamp(20px, 4vw, 64px);
+}
+
+/* Address / phone block */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-info__line {
+  display: block;
+}
+
+/* Logo */
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.84;
+  text-transform: none;
+}
+
+.logo--md {
+  font-size: clamp(18px, 2.2vw, 36px);
+}
+
+.logo--lg {
+  font-size: clamp(26px, 3.6vw, 62px);
+}
+
+.logo__line {
+  display: block;
+  transform-origin: left bottom;
+}
+
+/* Header icon button */
+.icon-btn {
+  display: inline-flex;
+  width: clamp(16px, 1.3vw, 22px);
+  height: clamp(16px, 1.3vw, 22px);
+}
+
+.icon-btn svg {
+  width: 100%;
+  height: 100%;
+}
+
+.magnetic {
+  display: inline-block;
+}
+
+.circle-btn {
+  display: inline-block;
+}
+
+.circle-btn--md {
+  --size: clamp(52px, 5.6vw, 92px);
+}
+
+.circle-btn--sm {
+  --size: clamp(34px, 3.2vw, 52px);
+}
+
+.circle-btn__body {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--size);
+  height: var(--size);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+}
+
+.circle-btn__fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+.circle-btn__arrows {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 38%;
+  height: 38%;
+}
+
+.circle-btn__arrow {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+}
+
+.circle-btn__arrow--b {
+  transform: translateX(-160%);
+}
+
+.media {
+  position: relative;
+  overflow: hidden;
+  background: var(--media-bg);
+}
+
+.media__parallax {
+  position: absolute;
+  inset: -8% 0;
+  will-change: transform;
+}
+
+.media__parallax--static {
+  inset: 0;
+}
+
+.media__zoom {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.media__img {
+  object-fit: cover;
+  will-change: transform;
+}
+
+.marquee {
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.marquee__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.marquee__item {
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  padding: 0.42em 0.55em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.cursor__dot {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: 0 0 0 1px rgba(253, 250, 243, 0.85);
+}
+
+.cursor__bubble {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  margin: -46px 0 0 -46px;
+  border-radius: 50%;
+  background: rgba(253, 250, 243, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--ink);
+}
+
+.cursor__label {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor {
+    display: none;
+  }
+}
+
+/* 06. Section blocks ------------------------------------------------------ */
+
+/* --- Header -------------------------------------------------------------- */
+.header {
+  position: relative;
+  z-index: 20;
+  align-items: start;
+  padding: var(--pad) var(--pad) 0;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+
+.header__logo {
+  grid-column: 1 / span 3;
+}
+
+.header__info {
+  grid-column: 4 / span 6;
+  padding-left: 0.6vw;
+}
+
+.header__nav {
+  grid-column: 13 / span 3;
+}
+
+.header__nav--secondary {
+  grid-column: 16 / span 4;
+}
+
+.header__actions {
+  grid-column: 21 / span 4;
+  display: flex;
+  justify-content: flex-end;
+  gap: clamp(10px, 1vw, 18px);
+}
+
+/* --- Hero ---------------------------------------------------------------- */
+.hero {
+  padding-inline: var(--pad);
+}
+
+.hero__top {
+  align-items: start;
+  margin-top: clamp(8px, 1.6vw, 30px);
+}
+
+.hero__title {
+  grid-column: 1 / span 12;
+  font-size: clamp(40px, 5.2vw, 92px);
+  font-weight: 300;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+
+.hero__line {
+  display: block;
+}
+
+.hero__aside {
+  grid-column: 16 / span 9;
+}
+
+.hero__small {
+  width: 36%;
+}
+
+.hero__caption {
+  max-width: 66%;
+  margin-top: 0.9em;
+  color: var(--ink);
+}
+
+.hero__image {
+  margin-top: clamp(24px, 3.6vw, 64px);
+  width: 100%;
+}
+
+.hero__labels {
+  margin-top: clamp(8px, 0.9vw, 16px);
+}
+
+.hero__label:nth-child(1) {
+  grid-column: 1 / span 8;
+}
+.hero__label:nth-child(2) {
+  grid-column: 16 / span 6;
+}
+.hero__label:nth-child(3) {
+  grid-column: 19 / span 6;
+  text-align: right;
+}
+
+/* --- Mission ------------------------------------------------------------- */
+.mission {
+  margin-top: var(--section-gap);
+  padding-inline: var(--pad);
+}
+
+.mission__image {
+  grid-column: 1 / span 11;
+  align-self: start;
+}
+
+.mission__content {
+  grid-column: 13 / span 12;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.mission__bottom {
+  display: grid;
+  grid-template-columns: 1fr 39%;
+  gap: var(--pad);
+  align-items: end;
+}
+
+.mission__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;
+  gap: 2rem;
+}
+
+.mission__copy .small {
+  max-width: 36ch;
+}
+
+.mission__thumb {
+  width: 100%;
+}
+
+/* --- Innovation (marquee) -------------------------------------------------- */
+.innovation {
+  margin-top: clamp(40px, 5.4vw, 100px);
+  font-size: var(--fs-mega);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.innovation__word {
+  display: inline-block;
+}
+
+.innovation__mark {
+  font-size: 0.3em;
+}
+
+/* --- Values -------------------------------------------------------------- */
+.values {
+  margin-top: clamp(24px, 3.4vw, 64px);
+  padding-inline: var(--pad);
+  row-gap: clamp(32px, 4.4vw, 80px);
+}
+
+.values__statement {
+  grid-column: 1 / span 11;
+  grid-row: 1;
+}
+
+.values__mark {
+  grid-column: 21 / span 4;
+  grid-row: 1;
+  justify-self: end;
+  font-size: clamp(48px, 6.6vw, 110px);
+  transform-origin: center;
+}
+
+.values__copy {
+  grid-column: 1 / span 8;
+  grid-row: 2;
+  align-self: end;
+  max-width: 36ch;
+}
+
+.values__list {
+  grid-column: 11 / span 14;
+  grid-row: 2;
+}
+
+.values__closing-rule {
+  position: relative;
+  height: 1px;
+}
+
+.value-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 58% 1fr;
+  align-items: center;
+  min-height: clamp(64px, 6.6vw, 112px);
+  padding-inline: clamp(10px, 1.2vw, 20px);
+  overflow: hidden;
+}
+
+.value-row__rule {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--line);
+}
+
+.values__closing-rule .value-row__rule {
+  top: 0;
+}
+
+.value-row__fill {
+  position: absolute;
+  inset: 0;
+  background: var(--fill);
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+.value-row__title,
+.value-row__text,
+.value-row__arrow {
+  position: relative;
+}
+
+.value-row__title {
+  font-size: clamp(14px, 1.15vw, 20px);
+  font-weight: 300;
+  letter-spacing: -0.005em;
+}
+
+.value-row__text {
+  padding-right: 4%;
+  opacity: 0.82;
+}
+
+.value-row__arrow {
+  position: absolute;
+  right: clamp(10px, 1.2vw, 20px);
+  top: 50%;
+  margin-top: -0.6em;
+  font-size: clamp(14px, 1.2vw, 20px);
+  line-height: 1;
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+/* --- Language ------------------------------------------------------------ */
+.language {
+  margin-top: var(--section-gap);
+  padding-inline: var(--pad);
+}
+
+.language__content {
+  grid-column: 1 / span 11;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.language__figure {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  padding: 1.5rem 0 1.5rem 18%;
+  color: #d3c9b6;
+}
+
+.language__rosette {
+  width: min(100%, 62%);
+  height: auto;
+  overflow: visible;
+}
+
+.language__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.language__copy {
+  max-width: 34ch;
+}
+
+.language__image {
+  grid-column: 13 / span 12;
+  align-self: start;
+}
+
+/* --- Banner -------------------------------------------------------------- */
+.banner {
+  position: relative;
+  margin-top: var(--section-gap);
+  overflow: hidden;
+  aspect-ratio: 1464 / 752;
+  color: #fff;
+  background: #5b4f45;
+}
+
+.banner__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.banner__bg-inner {
+  position: absolute;
+  inset: -8% 0;
+  will-change: transform;
+}
+
+.banner__bg-img {
+  object-fit: cover;
+}
+
+.banner__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 15, 10, 0.28), rgba(20, 15, 10, 0.1) 55%, rgba(20, 15, 10, 0.3));
+}
+
+.banner__title {
+  position: absolute;
+  top: 5.2%;
+  left: 4.4%;
+  max-width: 42%;
+}
+
+.banner__card {
+  position: absolute;
+  top: 19.5%;
+  left: 36.2%;
+  width: 27.6%;
+  height: 65.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 7.5% 9.5%;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(22px) saturate(1.15);
+  -webkit-backdrop-filter: blur(22px) saturate(1.15);
+  color: #fff;
+  will-change: transform;
+}
+
+.banner__card-title {
+  font-size: clamp(11px, 1vw, 17px);
+  line-height: 1.35;
+}
+
+.banner__card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 296 / 243;
+  overflow: hidden;
+}
+
+.banner__card-photo {
+  position: absolute;
+  inset: -6%;
+  will-change: transform;
+}
+
+.banner__card-img {
+  object-fit: cover;
+}
+
+.banner__card-foot {
+  display: grid;
+  grid-template-columns: 22% 1fr;
+  align-items: start;
+}
+
+.banner__card-foot .mark {
+  font-size: clamp(16px, 1.6vw, 26px);
+}
+
+.banner__quote {
+  position: absolute;
+  right: 4.6%;
+  bottom: 5%;
+  text-align: right;
+  text-indent: 0;
+}
+
+/* --- Team ---------------------------------------------------------------- */
+.team {
+  --cols: 4;
+  --gap: clamp(8px, 0.95vw, 18px);
+  margin-top: var(--section-gap);
+  padding-inline: var(--pad);
+}
+
+.team__statement {
+  grid-column: 1 / span 11;
+}
+
+.team__side {
+  grid-column: 16 / span 9;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: clamp(12px, 1.6vw, 28px);
+}
+
+.team__copy {
+  align-self: stretch;
+}
+
+.team__arrows {
+  display: flex;
+  gap: clamp(6px, 0.7vw, 12px);
+}
+
+.team__viewport {
+  grid-column: 1 / -1;
+  margin-top: clamp(20px, 2.8vw, 52px);
+  overflow: hidden;
+}
+
+.team__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+  gap: var(--gap);
+  will-change: transform;
+}
+
+.team-card {
+  display: block;
+}
+
+.team-card__photo {
+  position: relative;
+  aspect-ratio: 327 / 409;
+  overflow: hidden;
+  background: var(--media-bg);
+}
+
+.team-card__img {
+  object-fit: cover;
+  will-change: transform;
+}
+
+.team-card__name {
+  margin-top: 0.9em;
+  font-weight: 400;
+}
+
+.team-card__role {
+  color: var(--muted);
+}
+
+/* --- Contact ------------------------------------------------------------- */
+.contact {
+  margin-top: var(--section-gap);
+  padding-inline: var(--pad);
+  grid-template-rows: auto auto 1fr;
+}
+
+.contact__title {
+  grid-column: 1 / span 15;
+  grid-row: 1;
+  font-size: var(--fs-mega);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.contact__image {
+  grid-column: 20 / span 5;
+  grid-row: 1 / span 2;
+  align-self: start;
+}
+
+.contact__mail {
+  grid-column: 1 / span 10;
+  grid-row: 2;
+  margin-top: clamp(8px, 1.2vw, 20px);
+}
+
+.contact__email {
+  display: inline-block;
+  font-size: clamp(14px, 1.2vw, 20px);
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.6s var(--ease-out);
+}
+
+.contact__email:hover {
+  background-size: 100% 1px;
+}
+
+.contact__copy {
+  max-width: 44ch;
+  margin-top: 0.9em;
+}
+
+.contact__details {
+  grid-column: 13 / span 7;
+  grid-row: 2 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 3.4vw, 64px);
+  margin-top: clamp(8px, 1.2vw, 20px);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+
+.contact__label {
+  grid-column: 1 / span 6;
+  grid-row: 3;
+  align-self: end;
+  font-size: var(--fs-small);
+  letter-spacing: 0.02em;
+}
+
+/* --- Footer -------------------------------------------------------------- */
+.footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: clamp(48px, 6vw, 110px) var(--pad) var(--pad);
+  font-size: var(--fs-small);
+}
+
+/* 07. Responsive ---------------------------------------------------------- */
+@media (max-width: 900px) {
+  :root {
+    --fs-statement: clamp(22px, 6vw, 34px);
+    --fs-small: 13px;
+    --fs-body: 15px;
+    --fs-mega: clamp(44px, 13vw, 90px);
+  }
+
+  .statement--indent-sm,
+  .statement--indent-md,
+  .statement--indent-lg {
+    text-indent: 18%;
+  }
+
+  .header {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 1.2rem;
+  }
+  .header__logo {
+    grid-column: 1;
+  }
+  .header__actions {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .header__info {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding-left: 0;
+  }
+  .header__nav {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .header__nav--secondary {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  /* Hero */
+  .hero__top {
+    grid-template-columns: 1fr;
+    row-gap: 1.4rem;
+    margin-top: 2.4rem;
+  }
+  .hero__title,
+  .hero__aside {
+    grid-column: 1;
+  }
+  .hero__small {
+    width: 42%;
+  }
+  .hero__caption {
+    max-width: 90%;
+  }
+  .hero__image {
+    aspect-ratio: 4 / 3 !important;
+  }
+  .hero__label:nth-child(1) {
+    grid-column: 1 / span 8;
+  }
+  .hero__label:nth-child(2) {
+    grid-column: 9 / span 8;
+  }
+  .hero__label:nth-child(3) {
+    grid-column: 17 / span 8;
+  }
+
+  /* Stacked sections */
+  .mission,
+  .values,
+  .language,
+  .team,
+  .contact {
+    grid-template-columns: 1fr;
+  }
+  .mission__image,
+  .mission__content,
+  .values__statement,
+  .values__copy,
+  .values__list,
+  .language__content,
+  .language__image,
+  .team__statement,
+  .team__side,
+  .team__viewport,
+  .contact__title,
+  .contact__image,
+  .contact__mail,
+  .contact__details,
+  .contact__label {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .mission__content {
+    margin-top: 2rem;
+  }
+  .mission__bottom {
+    grid-template-columns: 1fr 42%;
+  }
+
+  .values {
+    row-gap: 2rem;
+  }
+  .values__mark {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+    order: 2;
+  }
+  .values__list {
+    order: 4;
+  }
+  .values__copy {
+    order: 3;
+  }
+  .value-row {
+    grid-template-columns: 1fr;
+    row-gap: 0.4rem;
+    padding-block: 1.1rem;
+  }
+
+  .language__image {
+    margin-top: 2rem;
+  }
+  .language__figure {
+    padding-left: 0;
+  }
+  .language__rosette {
+    width: 70%;
+  }
+
+  .banner {
+    aspect-ratio: auto;
+    min-height: 150vw;
+  }
+  .banner__title {
+    max-width: 80%;
+  }
+  .banner__card {
+    top: 24%;
+    left: 12%;
+    width: 76%;
+    height: 50%;
+    padding: 6% 8%;
+  }
+  .banner__card-title {
+    font-size: 13px;
+  }
+  .banner__quote {
+    right: 6%;
+    bottom: 3.5%;
+  }
+
+  .team {
+    --cols: 2;
+  }
+  .team__side {
+    margin-top: 1.6rem;
+    align-items: stretch;
+  }
+  .team__arrows {
+    justify-content: flex-end;
+  }
+
+  .contact {
+    row-gap: 1.6rem;
+  }
+  .contact__image {
+    width: 46%;
+  }
+  .contact__details {
+    margin-top: 1rem;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roll__text,
+  .contact__email {
+    transition: none;
+  }
+}
